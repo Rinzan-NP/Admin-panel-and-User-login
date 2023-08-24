@@ -1,0 +1,226 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+<title>User</title>
+{% endblock title %}
+{% block content %}
+
+
+
+<nav class="navbar  navbar-dark bg-dark px-4 py-3">
+  <div class="container-fluid">
+    <a class="navbar-brand-d-flex text-decoration-none text-white" href="#">
+      <img src={% static '/images/protection.png' %} width="40" height="40" class="d-inline-block align-top" alt="image">
+      <span class='fs-4'>Administration</span>
+    </a>
+    <form class="d-flex" action="logout">
+      
+      <button class="btn btn-outline-success" type="submit">Log Out</button>
+    </form>
+  </div>
+</nav>
+
+<section class='bg-secondary p-5 ' style='height : 100% ; min-height : 100vh'>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>{{message}}</strong> .
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+    {% comment %} add user {% endcomment %}
+    <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded='false' aria-controls="collapseOne">
+              Add User
+            </button>
+          </h2>
+          <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                {% comment %} add form {% endcomment %}
+                <form class="mx-1 mx-md-4" action="adduser" method="POST">
+                    {% csrf_token %}
+
+                    
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        <label class="form-label" for="form3Example1c">Username</label>
+                        <input type="text"  class="form-control" placeholder='Username' name='name'/>
+                        
+                      </div>
+                    </div>
+  
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        <label class="form-label" for="form3Example3c">Email</label>
+                        <input type="email"  class="form-control" placeholder='Email' name='email'/>
+                        
+                      </div>
+                    </div>
+
+                    <div class="d-flex flex-row align-items-center mb-4">
+                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                        <div class="form-outline flex-fill mb-0">
+                          <label class="form-label" for="form3Example1c">First name</label>
+                          <input type="text"  class="form-control" placeholder='First name' name='firstname'/>
+                          
+                        </div>
+                      </div>
+  
+                      <div class="d-flex flex-row align-items-center mb-4">
+                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                        <div class="form-outline flex-fill mb-0">
+                          <label class="form-label" for="form3Example1c">Last name</label>
+                          <input type="text"  class="form-control" placeholder='Last name' name='lastname'/>
+                          
+                        </div>
+                      </div>
+  
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        <label class="form-label" for="form3Example4c">Password</label>
+                        <input type="password"  class="form-control" placeholder='Password' name="pass"/>
+                        
+                      </div>
+                    </div>
+  
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        <label class="form-label" for="form3Example4cd">Repeat your password</label>
+                        <input type="password"  class="form-control" placeholder='Repeat password' name="pass2">
+                        
+                       
+                      </div>
+                    </div>
+                    <div class="d-flex justify-content-center gap-3 mx-4 mb-3 mb-lg-4">
+                        <button type="submit" name="register" class="btn btn-success btn-lg w-100">Create User</button>
+                        
+                    </div>
+    
+                    </form>
+    
+
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              Delelte User
+            </button>
+          </h2>
+          <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <form action="deleteuser" method="POST">
+                    {% csrf_token %}
+                    <div class="d-flex flex-row align-items-center mb-4">
+                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                        <div class="form-outline flex-fill mb-0">
+                          <label class="form-label" for="form3Example1c">Username</label>
+                          <input type="text"  class="form-control" placeholder='Username' name='name'/>
+                          
+                        </div>
+                    </div> 
+                    <div class="d-flex justify-content-center gap-3 mx-4 mb-3 mb-lg-4">
+                        <button type="submit" name="register" class="btn btn-success btn-lg w-100">Delete User</button>
+                        
+                    </div>
+                </form>
+              
+
+
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingThree">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              Update user data
+            </button>
+          </h2>
+          <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <form class="mx-1 mx-md-4" action="update" method="POST">
+                    {% csrf_token %}
+
+                    
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        <label class="form-label" for="form3Example1c">Username of user to update</label>
+                        <input type="text"  class="form-control" placeholder='Username' name='name'/>
+                        
+                      </div>
+                    </div>
+  
+                    
+                    <div class="d-flex justify-content-center gap-3 mx-4 mb-3 mb-lg-4">
+                        <button type="submit" name="register" class="btn btn-success btn-lg w-100">Next -> </button>
+                        
+                    </div>
+    
+                    </form>
+
+
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFour">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                Search data
+              </button>
+            </h2>
+            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                
+                <form class="mx-1 mx-md-4" action="search" method="POST">
+                    {% csrf_token %}
+
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        <label class="form-label" for="form3Example1c">Username of user to update</label>
+                        <input type="text"  class="form-control" placeholder='Username' name='name'/>
+                        
+                      </div>
+                    </div>
+   
+                    <div class="d-flex justify-content-center gap-3 mx-4 mb-3 mb-lg-4">
+                        <button type="submit" name="register" class="btn btn-success btn-lg w-100">Next -> </button>
+                        
+                    </div>
+    
+                    </form>
+
+
+              </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFive">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                View data
+              </button>
+            </h2>
+            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <form action="view_data">
+                  <div class="d-flex justify-content-center align-items-center">
+                    <button type="submit" class="btn btn-success">View Data</button>
+                  </div>
+                </form>
+            </div>
+          </div>
+        </div>
+
+</section>
+
+{% endblock content %}
+

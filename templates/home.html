@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+<title>Home</title>
+{% endblock title %}
+
+{% block content %}
+
+{% if messages %}
+{% for message in messages %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>{{message}}</strong> .
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+{% endif %}
+<div class="log-out w-100 d-flex justify-content-center align-items-center">
+
+    <div class="d-flex p-4 rounded flex-column row-gap-4 px-6 log-out-container">
+        
+        <div class="text d-flex justify-content-center flex-column">
+            <div class="text d-flex justify-content-center">
+                <p class="fs-2 text-align-center text-white">Welcome </p>
+            </div>
+            <div class="text d-flex justify-content-center">
+                <p class="fs-4 text-align-center text-white">Loginned Succesfully! <br></p> 
+            </div>
+        
+        </div>
+
+        <div class="log-out-btn d-flex justify-content-center">
+            <form action="/logout/">
+                <button type="submit" class="btn-1 rounded p-2 border hidden">Log out</button>
+            </form>
+            
+        </div>
+        
+    </div>
+
+</div>
+
+{% endblock content %}

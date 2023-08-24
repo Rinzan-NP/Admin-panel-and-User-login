@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+<title>Admin Login</title>
+{% endblock title %}
+{% block content %}
+
+<nav class="navbar navbar-dark bg-dark px-4 py-3">
+    <a class="navbar-brand" href="#">
+        <img src={% static '/images/protection.png' %} width="40" height="40" class="d-inline-block align-top" alt="image">
+        <span class='fs-4'>Administration</span>
+</a>
+</nav>
+<ul class="list-group m-4 border solid">
+    {% for items in value %}
+        <li class="list-group-item">Username : {{ items.username }} </li>
+        <li class="list-group-item">First name : {{ items.first_name }}</li>
+        <li class="list-group-item">Last Name : {{ items.last_name }}</li>
+        <li class="list-group-item">Email : {{ items.email }}</li>
+    {% endfor %}
+  </ul>
+
+<form action="search_back" >
+    <div class="d-flex justify-content-center align-items-center">
+        <button type="submit" class="btn btn-success">Back <-</button>
+    </div>
+</form>
+
+{% endblock content%}

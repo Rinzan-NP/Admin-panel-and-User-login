@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+<title>Login</title>
+{% endblock title %}
+
+{% block content %}
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>{{message}}</strong> .
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endfor %}
+  {% endif %}
+<section class="vh-100 d-flex">
+  
+    <div class="container-fluid h-custom">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-md-9 col-lg-6 col-xl-5">
+          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+            class="img-fluid" alt="Sample image">
+        </div>
+        <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+          <form action="" method="POST">
+            {% csrf_token %}
+            <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
+                <p class=" h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Welcome Back!</p>
+              <br><br><br>
+              </div>
+            
+  
+            <!-- Email input -->
+            <div class="form-outline mb-4">
+                <label class="form-label" for="form3Example3">Username</label>
+              <input type="text" class="form-control form-control-lg"
+                placeholder="Enter a valid Username" name='username'/>
+            </div>
+  
+            <!-- Password input -->
+            <div class="form-outline mb-3">
+                <label class="form-label" for="form3Example4">Password</label>
+              <input type="password" class="form-control form-control-lg"
+                placeholder="Enter password" name='password' />
+        
+            </div>
+            {% if error %}
+            <div class="alert alert-danger" role="alert">
+                {{error}}
+            </div>
+            {% endif %}
+       
+  
+            <div class="text-center text-lg-start mt-4 pt-2 d-flex gap-3">
+              <button type="submit" class="btn btn-success btn-lg"
+                style="padding-left: 2.5rem; padding-right: 2.5rem; width : 60%">Login</button>
+                 <a href="/signup/" class="btn btn-primary btn-lg"
+                 style="padding-left: 2.5rem; padding-right: 2.5rem; width : 40%">Sign Up</a>
+         
+            </div>
+  
+          </form>
+          <form action="admin">
+            <button type="submit" class='btn bg-transparent text-primary mt-3'>Admin ?</button>
+          </form>
+        </div>
+      </div>
+    </div>
+   
+     
+  </section>
+{% endblock content %}
+

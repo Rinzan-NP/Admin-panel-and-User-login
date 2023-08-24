@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+<title>Admin</title>
+{% endblock title %}
+{% block content %}
+
+<!-- Image and text -->
+<nav class="navbar  navbar-dark bg-dark px-4 py-3">
+    <div class="container-fluid">
+      <a class="navbar-brand-d-flex text-decoration-none text-white" href="#">
+        <img src={% static '/images/protection.png' %} width="40" height="40" class="d-inline-block align-top" alt="image">
+        <span class='fs-4'>Administration</span>
+      </a>
+      <form class="d-flex" action="logout">
+        
+        <button class="btn btn-outline-success" type="submit">Log Out</button>
+      </form>
+    </div>
+</nav>
+
+<section class='bg-secondary p-5 ' style='height : 100vh'>
+    
+    <!-- user -->
+    <form action="user">
+        <div class="btn-group-vertical w-100 " role="group" aria-label="Vertical button group">
+            <button type="submit" class="btn btn-dark text-start px-4" >User</button>
+          
+        </div>
+    </form>
+    {% comment %} tabels {% endcomment %}
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock content %}

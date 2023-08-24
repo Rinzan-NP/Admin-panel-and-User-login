@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+<title>Admin Login</title>
+{% endblock title %}
+{% block content %}
+
+<nav class="navbar navbar-dark bg-dark px-4 py-3">
+    <a class="navbar-brand" href="#">
+        <img src={% static '/images/protection.png' %} width="40" height="40" class="d-inline-block align-top" alt="image">
+        <span class='fs-4'>Administration</span>
+</a>
+</nav>
+<div class="p-4">
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Username</th>
+            <th scope="col">Email</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for items in value %}
+        <tr>
+            
+            <td>{{items.id}}</td>
+            <td>{{items.first_name}}</td>
+            <td>{{ items.last_name }}</td>
+            <td>{{ items.username }}</td>
+            <td>{{ items.email }}</td>
+
+        </tr>
+        {% endfor %}  
+
+        </tbody>
+  </table>
+</div>
+
+{% endblock content %}
